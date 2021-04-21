@@ -1,0 +1,39 @@
+{
+    "terminal.integrated.fontSize": 14,
+
+    "editor.tabSize": 2,
+    "editor.fontSize": 16,
+    "editor.lineHeight": 26,
+    "editor.semanticHighlighting.enabled": false,
+    
+    "editor.rulers": [80, 120],
+    
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+    },
+    
+    "files.exclude": {
+      "**/.git": true,
+      "**/.svn": true,
+      "**/.hg": true,
+      "**/CVS": true,
+      "**/.DS_Store": true,
+      // "**/node_modules": true
+    },
+    
+    "files.associations": {
+      ".sequelizerc": "javascript",
+      ".stylelintrc": "json",
+      ".prettierrc": "json",
+      "*.tsx": "typescriptreact"
+    },
+    
+    "typescript.tsserver.log": "verbose",
+
+    "tabnine.experimentalAutoImports": true,
+
+    "editor.suggestSelection": "first",
+    "terminal.integrated.showExitAlert": false,
+    
+    "window.zoomLevel": -1
+}
