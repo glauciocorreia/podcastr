@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { PlayerContext } from '../contexts/PlayerContexts';
+import { PlayerContext } from '../contexts/PlayerContext';
 
 import { GetStaticProps } from 'next'
 import Image from 'next/image'

@@ -1,4 +1,4 @@
-import { PlayerContext } from "../../contexts/PlayerContexts";
+import { PlayerContext } from "../../contexts/PlayerContext";
 import { useContext, useEffect, useRef } from "react";
 import Slider from 'rc-slider'
 
@@ -18,7 +18,9 @@ export default function Player() {
     togglePlay,
     setPlayingState,
     playNext,
-    playPrevious
+    playPrevious,
+    hasNext,
+    hasPrevious
   } = useContext(PlayerContext)
 
   useEffect(() => {
@@ -91,7 +93,7 @@ export default function Player() {
           <button type="button" disabled={!episode}>
             <img src="/shuffle.svg" alt="Embaralhar" />
           </button>
-          <button type="button" onClick={playPrevious} disabled={!episode}>
+          <button type="button" onClick={playPrevious} disabled={!episode || !hasPrevious}>
             <img src="/play-previous.svg" alt="Tocar anterior" />
           </button>
           <button
@@ -106,7 +108,7 @@ export default function Player() {
               <img src="/play.svg" alt="Pausar" />
             )}
           </button>
-          <button type="button" onClick={playNext} disabled={!episode}>
+          <button type="button" onClick={playNext} disabled={!episode || !hasNext}>
             <img src="/play-next.svg" alt="Tocar próxima" />
           </button>
           <button type="button" disabled={!episode}>
