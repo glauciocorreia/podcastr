@@ -2,13 +2,24 @@
 
 ---
 
-NextJS / React
-Typescript
-Sass
-date-fns
-json-server (yarn add json-server -D)
-axios (yarn add axios)
-rc-slider (yarn add rc-slider)
+## EXTRA TO-DO LIST
+
+- ( ) Responsive design
+- ( ) PWA
+- ( ) Dark Theme
+
+
+---
+## Technologies and Tools
+
+- NextJS / React
+- Typescript
+- Sass
+- date-fns
+- json-server (yarn add json-server -D)
+- axios (yarn add axios)
+- rc-slider (yarn add rc-slider)
+
 ---
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
