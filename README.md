@@ -7,6 +7,7 @@
 - ( ) Responsive design
 - ( ) PWA
 - ( ) Dark Theme
+- ( ) Electron app version
 
 
 ---
