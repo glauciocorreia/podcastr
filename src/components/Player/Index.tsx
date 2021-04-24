@@ -1,5 +1,5 @@
 import { PlayerContext } from "../../contexts/PlayerContexts";
-import { useContext } from "react";
+import { useContext, useEffect, useRef } from "react";
 import Slider from 'rc-slider'
 
 import 'rc-slider/assets/index.css'
@@ -9,7 +9,28 @@ import Image from 'next/image'
 import styles from "./styles.module.scss";
 
 export default function Player() {
-  const { episodeList, currentEpisodeIndex } = useContext(PlayerContext)
+  const audioRef = useRef<HTMLAudioElement>(null)
+
+  const {
+    episodeList,
+    currentEpisodeIndex,
+    isPlaying,
+    togglePlay,
+    setPlayingState
+  } = useContext(PlayerContext)
+
+  useEffect(() => {
+    if (!audioRef.current) {
+      return
+    }
+
+    if (isPlaying) {
+      audioRef.current.play()
+    } else {
+      audioRef.current.pause()
+    }
+
+  }, [isPlaying])
 
   const episode = episodeList[currentEpisodeIndex]
 
@@ -20,7 +41,7 @@ export default function Player() {
         <strong>Tocando agora </strong>
       </header>
 
-      { episode ? (
+      {episode ? (
         <div className={styles.currentEpisode}>
           <Image
             width={592}
@@ -37,29 +58,32 @@ export default function Player() {
         </div>
       )}
 
-      <footer className={!episode ? styles.empty : ''}>
+      <footer className={!episode ? styles.empty : ""}>
         <div className={styles.progress}>
           <span>00:00</span>
           <div className={styles.slider}>
-            { episode ? (
+            {episode ? (
               <Slider
-                trackStyle={{ backgroundColor: '#04d361' }}
-                railStyle={{ backgroundColor: '#9f75ff' }}
-                handleStyle={{ borderColor: '#04d361', borderWidth: 4 }}
+                trackStyle={{ backgroundColor: "#04d361" }}
+                railStyle={{ backgroundColor: "#9f75ff" }}
+                handleStyle={{ borderColor: "#04d361", borderWidth: 4 }}
               />
             ) : (
-              <div className={styles.emptySlider} /> 
-            ) } 
+              <div className={styles.emptySlider} />
+            )}
           </div>
           <span>00:00</span>
         </div>
 
-        { episode && (
-          <audio 
+        {episode && 
+          <audio
             src={episode.url}
+            ref={audioRef}
             autoPlay
+            onPlay={() => setPlayingState(true)} 
+            onPause={() => setPlayingState(false)} 
           />
-        )}
+        }
 
         <div className={styles.buttons}>
           <button type="button" disabled={!episode}>
@@ -68,8 +92,17 @@ export default function Player() {
           <button type="button" disabled={!episode}>
             <img src="/play-previous.svg" alt="Tocar anterior" />
           </button>
-          <button type="button" className={styles.playButton} disabled={!episode}>
-            <img src="/play.svg" alt="Tocar" />
+          <button
+            type="button"
+            className={styles.playButton}
+            disabled={!episode}
+            onClick={togglePlay}
+          >
+            {isPlaying ? (
+              <img src="/pause.svg" alt="Tocar" />
+            ) : (
+              <img src="/play.svg" alt="Pausar" />
+            )}
           </button>
           <button type="button" disabled={!episode}>
             <img src="/play-next.svg" alt="Tocar próxima" />
@@ -80,5 +113,5 @@ export default function Player() {
         </div>
       </footer>
     </div>
-  )
+  );
 }
